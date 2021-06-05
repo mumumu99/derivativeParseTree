@@ -6,7 +6,7 @@ This program is part of a thesis submitted in partial fulfillment of the require
 
 ## General idea
 
-Natural numbers (positive integers) are treated as strings, `'9'`, negative numbers are stored as lists `['-', '0'. '3']` and fractions are stored also as lists `['/', '1', '2']`. In case the fraction was negative, the sign would only affect the numerator, hence `['/', ['-', '0', '1'], '2']`.
+Natural numbers (positive integers) are treated as strings, `'9'`, negative numbers are stored as lists `['-', '0', '3']` and fractions are stored also as lists `['/', '1', '2']`. In case the fraction was negative, the sign would only affect the numerator, hence `['/', ['-', '0', '1'], '2']`.
 
 The key idea was to store mathematical expressions as nested lists, and this was motivated by the first reference included at the end. In order to do so, there are different steps to follow:
 
