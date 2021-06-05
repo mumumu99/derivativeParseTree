@@ -34,7 +34,7 @@ Special attention should be taken when dealing with the exponentiation operator 
 
 ## Notes
 
-The program has been tested with many kinds of symbolic expressions, but please understand that in spite of the many hours of work devoted to it, there might still be errors. I have tried to produce a readable code, and although it is not full of comments, it should not be too difficult to follow. I am a student of Mathematics and Physics, so please take that into consideration when judging my code. All the coding in python is my own work, exceptuating the Shunting yard Algorithm.
+The program has been tested with many kinds of symbolic expressions, but please understand that in spite of the many hours of work devoted to it, there might still be errors. I have tried to produce a readable code, and although it is not full of comments, it should not be too difficult to follow. I am a student of Mathematics and Physics, so please take that into consideration when judging my code. All the coding in python is my own work, with the exception of the Shunting yard Algorithm.
 
 
 
