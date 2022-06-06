@@ -1,4 +1,5 @@
 import argparse
+from os import execvpe
 
 parser = argparse.ArgumentParser(description='Derivative of symbolic expression.')
 parser.add_argument('--exp', required=True, help='expression')
@@ -40,34 +41,29 @@ def identicalTrees(a, b):
 
 exp = args.exp
 var = args.var
-# exp = "x^(-4)-x^3-x^2-x-1+sin(x)"
-# exp = "sin(x^2+x)+x"
-# exp = 'sin(x)'
-# exp = 'x*y*x*y*x'
-# exp = '-12*(-a-cos(x)*3)-2'
-print("Funcion: ", exp)
+
+print("Expression: ", exp)
 
 exp = tokenize(exp)
 print("Tokenized: ", exp)
 
 exp = postfix(exp)
-print("postfix: ", exp)
+print("Postfix: ", exp)
 
 pt = buildParseTree(exp)
-print("buildParseTree: ", infixTree(pt))
+print("Fully parenthesized expression: ", infixTree(pt),'\n')
 
 diff_pt = diffTree(pt,var)
-print("differativeTree: ", infixTree(diff_pt))
-print('\n')
+print("Derivative expression: ", infixTree(diff_pt),'\n')
 
 simp_diff_pt = simplifyTree(diff_pt)
 
 print('Simplifying...')
+
 counts = 0
 while counts < 50 and not identicalTrees(simp_diff_pt, simplifyTree(simp_diff_pt)):
    simp_diff_pt = simplifyTree(simp_diff_pt)
    print(infixTree(simp_diff_pt))
-   print('\n')
-   counts = counts + 1
-
-print("counts: ", counts)
+   counts += 1
+print('')
+print("Simplified expression: ", infixTree(simp_diff_pt))
