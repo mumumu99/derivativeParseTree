@@ -1,5 +1,4 @@
 import argparse
-from os import execvpe
 
 parser = argparse.ArgumentParser(description='Derivative of symbolic expression.')
 parser.add_argument('--exp', required=True, help='expression')
