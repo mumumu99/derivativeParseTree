@@ -1,40 +1,19 @@
-$ pip install pythonds
+import argparse
 
-def infixTree(tree):
-    if is_operator(tree.getRootVal()):
-        if tree.getRootVal() == '-' and tree.leftChild.getRootVal() == '0':
-            return  "(" +  tree.getRootVal() + infixTree(tree.rightChild) + ")"
-        else:
-            return  "(" + infixTree(tree.leftChild) + tree.getRootVal() + infixTree(tree.rightChild) + ")"
-    elif is_function(tree.getRootVal()):
-        return   tree.getRootVal() + "(" + infixTree(tree.rightChild) + ")"
-    else:
-        return tree.getRootVal()
+parser = argparse.ArgumentParser(description='Derivative of symbolic expression.')
+parser.add_argument('--exp', required=True, help='expression')
+parser.add_argument('--var', required=True, help='variable')
+args = parser.parse_args()
 
-def is_operator(car):
-    operator_list = ["+", "-", "*", "/", "^"]
-    if car in operator_list:
-        return 1
-    else:
-        return 0
-    
-def is_function(car):
-    function_list = ["cos", "sin", "tan", "exp", "log"]
-    if car in function_list:
-        return 1
-    else:
-        return 0
+# print(args.exp)
+# print(args.var)
 
-
-from simplify import simplify
-from SQRPN import SQRPN
-from infix import infix
-from diff2 import diff
-from SYA import SYA
 from tokenizer import tokenize
+from postfix_SYA import postfix
 from buildParseTree import buildParseTree
 from diffTree import diffTree
 from simplifyTree import simplifyTree
+from infixTree import infixTree
 
 def is_function(car):
     function_list = ["cos", "sin", "tan", "exp", "log"]
@@ -42,30 +21,6 @@ def is_function(car):
         return 1
     else:
         return 0
-
-# def printexp(tree):
-#     # function_brac = 0
-#     # if tree.leftChild:
-#     #     print('(', end=' ')
-#     #     printexp(tree.getLeftChild())
-#     # elif is_function(tree.getRootVal()):
-#     #     function_brac += 1
-#     # print(tree.getRootVal(), end=' ')
-#     # if tree.rightChild:
-#     #     printexp(tree.getRightChild())
-#     #     if function_brac > 0:
-#     #         function_brac -= 1
-#     #     else:
-#     #         print(')', end=' ')
-#     if is_operator(tree.getRootVal()):
-#         if tree.getRootVal() == '-' and tree.leftChild.getRootVal() == '0':
-#             return  "(" +  tree.getRootVal() + printexp(tree.rightChild) + ")"
-#         else:
-#             return  "(" + printexp(tree.leftChild) + tree.getRootVal() + printexp(tree.rightChild) + ")"
-#     elif is_function(tree.getRootVal()):
-#         return   tree.getRootVal() + "(" + printexp(tree.rightChild) + ")"
-#     else:
-#         return tree
 
 # identical
 def identicalTrees(a, b):
@@ -83,19 +38,20 @@ def identicalTrees(a, b):
     # 3. one empty, one not -- false
     return False
 
-var = 'x'
-#exp = "x^(-4)-x^3-x^2-x-1+sin(x)"
-exp = "sin(x^2+x)+x"
-#exp = 'sin(x)'
-#exp = 'x*y*x*y*x'
-#exp = '-12*(-a-cos(x)*3)-2'
+exp = args.exp
+var = args.var
+# exp = "x^(-4)-x^3-x^2-x-1+sin(x)"
+# exp = "sin(x^2+x)+x"
+# exp = 'sin(x)'
+# exp = 'x*y*x*y*x'
+# exp = '-12*(-a-cos(x)*3)-2'
 print("Funcion: ", exp)
 
 exp = tokenize(exp)
 print("Tokenized: ", exp)
 
-exp = SYA(exp)
-print("SYA: ", exp)
+exp = postfix(exp)
+print("postfix: ", exp)
 
 pt = buildParseTree(exp)
 print("buildParseTree: ", infixTree(pt))
