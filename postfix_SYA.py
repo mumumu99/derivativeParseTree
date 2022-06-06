@@ -1,4 +1,4 @@
-def SYA(expr):
+def postfix(expr):
     stack = []
     queue = []
     
