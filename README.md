@@ -4,4 +4,4 @@ Implementation of 'Symbolic Expression Derivator'
 
 # Author
 
-Muhyron Kang / @mumumu99
+Muhyeon Kang / @mumumu99
