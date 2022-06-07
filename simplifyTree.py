@@ -62,6 +62,11 @@ def simplifyTree(parseTree):
             elif current == '-':
                 if isinstance(LTree.getRootVal(), str) and isinstance(RTree.getRootVal(), str) and LTree.getRootVal().isnumeric() and RTree.getRootVal().isnumeric() and int(LTree.getRootVal())>=int(RTree.getRootVal()):
                     return BinaryTree(str(int(LTree.getRootVal())-int(RTree.getRootVal())))
+                if isinstance(LTree.getRootVal(), str) and isinstance(RTree.getRootVal(), str) and LTree.getRootVal().isnumeric() and RTree.getRootVal().isnumeric() and int(LTree.getRootVal())<int(RTree.getRootVal()):
+                    tempTree = BinaryTree('-')
+                    tempTree.insertLeft('0')
+                    tempTree.insertRight(str(int(RTree.getRootVal())-int(LTree.getRootVal())))
+                    return tempTree
                 if LTree.getRootVal() == '0' and RTree.getRootVal() == '0':
                     return BinaryTree('0')
                 if RTree.getRootVal() == '0':
@@ -76,6 +81,8 @@ def simplifyTree(parseTree):
             elif current == '^':
                 if RTree.getRootVal() == '1':
                     return simplifyTree(LTree)
+                if LTree.getRootVal() == '1':
+                    return BinaryTree('1')
                 elif RTree.getRootVal() == '0':
                     return BinaryTree('1')
                 elif LTree.getRootVal() == '0':

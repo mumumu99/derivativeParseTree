@@ -66,6 +66,17 @@ def diffTree(parseTree, var):
         tempTree.rightChild.leftChild.rightChild = G
         tempTree.rightChild.rightChild = diffTree(G,var)
         return tempTree
+    
+    elif current == "tan":
+        tempTree = BinaryTree('/')
+        tempTree.leftChild = diffTree(G,var)
+        tempTree.insertRight('^')
+        tempTree.rightChild.insertLeft('cos')
+        # tempTree.rightChild.leftChild.leftChild = F
+        # tempTree.rightChild.rightChild = diffTree(F,var)
+        tempTree.rightChild.leftChild.rightChild = G
+        tempTree.rightChild.insertRight('2')
+        return tempTree
 
     elif current == "exp":
         tempTree = BinaryTree('*')
