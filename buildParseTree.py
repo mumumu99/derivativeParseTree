@@ -6,10 +6,9 @@ def buildParseTree(fpexp):
     pStack = Stack()
     eTree = BinaryTree('')
     pStack.push(eTree)
-    # Itero hasta que llegue al final
+    
     for c in fpexp:
 
-        # Si tengo un operador ..., el1, el2, operador, ... lo concateno en  [operador, el1, el2]
         if is_operator(c):
             tempTree = BinaryTree(c)
             tempTree.rightChild = pStack.pop()
@@ -17,7 +16,6 @@ def buildParseTree(fpexp):
 
             pStack.push(tempTree)
             
-        # Si tengo una funcion ..., arg, funcion, ... lo concateno en  [funcion, arg]
         elif is_function(c):
             tempTree = BinaryTree(c)
             # tempTree.leftChild = pStack.pop()

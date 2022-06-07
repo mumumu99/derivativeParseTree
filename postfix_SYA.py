@@ -4,8 +4,6 @@ def postfix(expr):
     
     for i in range (len(expr)):
         token = expr[i]
-        #print("cola: ", queue)
-        #print("stack", stack)
         if not is_operator(token) and not is_function(token) and not is_symbol(token):
             queue.append(token)
         elif is_operator(token):
@@ -81,5 +79,3 @@ def precedence(token, stack):
             return 1
         else:
             return 0
-
-#print(SYA(['0', '-', '12', '*', '(', '0', '-', 'a', '-', 'cos', '(', 'x', ')', '*', '3', ')', '-', '2']))

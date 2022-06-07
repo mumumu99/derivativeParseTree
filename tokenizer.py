@@ -39,5 +39,3 @@ def tokenize(expr):
             return -1
         i = i+1
     return tokexp
-
-

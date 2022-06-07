@@ -1,22 +1,16 @@
-##################################################################################################
-# diff(expression, var) Devuelve la derivada de expression respecto a la variable var
-# expression es una expresion en notacion SQRPN
-# var es una variable de derivacion, por ejemplo, "x"
-##################################################################################################
 from pythonds.trees import BinaryTree
 
 def diffTree(parseTree, var):
     current = parseTree.getRootVal()
     F = parseTree.leftChild
     G = parseTree.rightChild
-    # Derivada de una suma o una resta
+    
     if current =='+' or current =='-':
         tempTree = BinaryTree(current)
         tempTree.leftChild = diffTree(F,var)
         tempTree.rightChild = diffTree(G,var)
         return tempTree
         
-    # Derivada del producto
     elif current == '*':
         tempTree = BinaryTree('+')
         tempTree.insertLeft('*')
@@ -27,7 +21,6 @@ def diffTree(parseTree, var):
         tempTree.rightChild.rightChild = diffTree(G,var)
         return tempTree
         
-    # Derivada de un cociente
     elif current == '/':
         tempTree1 = BinaryTree('-')
         tempTree1.insertLeft('*')
@@ -128,12 +121,3 @@ def diffTree(parseTree, var):
 
     else:
         return BinaryTree('0')
-
-
-# pt1 = BinaryTree('sin')
-# pt1.insertLeft('x')
-# pt2 = BinaryTree('x')
-# pt = BinaryTree('+')
-# pt.leftChild = pt1
-# pt.rightChild = pt2
-# diffTree(pt, 'x').printexp()

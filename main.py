@@ -5,9 +5,6 @@ parser.add_argument('--exp', required=True, help='expression')
 parser.add_argument('--var', required=True, help='variable')
 args = parser.parse_args()
 
-# print(args.exp)
-# print(args.var)
-
 from tokenizer import tokenize
 from postfix_SYA import postfix
 from buildParseTree import buildParseTree
@@ -22,13 +19,10 @@ def is_function(car):
     else:
         return 0
 
-# identical
 def identicalTrees(a, b):
-     
     # 1. Both empty
     if a is None and b is None:
         return True
- 
     # 2. Both non-empty -> Compare them
     if a is not None and b is not None:
         return ((a.getRootVal() == b.getRootVal()) and

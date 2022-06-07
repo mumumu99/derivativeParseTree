@@ -15,7 +15,6 @@ def simplifyTree(parseTree):
             tempTree.rightChild = simplifyTree(RTree)
 
             return tempTree
-            #return  [expression[0], simplifyTree(expression[1])]
 
         else: 
             if current == '*':
@@ -37,7 +36,6 @@ def simplifyTree(parseTree):
                     tempTree.leftChild = simplifyTree(LTree)
                     tempTree.rightChild = simplifyTree(RTree)
                     return tempTree
-                    #return [expression[0],simplifyTree(expression[1]), simplifyTree(expression[2])]
             
             if current == '/':
                 if RTree.getRootVal() == '1':
@@ -62,13 +60,11 @@ def simplifyTree(parseTree):
                     tempTree.insertLeft('2')
                     tempTree.rightChild = simplifyTree(LTree)
                     return tempTree
-                    #return ['*', '2', simplifyTree(expression[1])]
                 else:
                     tempTree = BinaryTree(current)
                     tempTree.leftChild = simplifyTree(LTree)
                     tempTree.rightChild = simplifyTree(RTree)
                     return tempTree
-                    #return [expression[0],simplifyTree(expression[1]), simplifyTree(expression[2])]
 
             elif current == '-':
                 if isinstance(LTree.getRootVal(), str) and isinstance(RTree.getRootVal(), str) and LTree.getRootVal().isnumeric() and RTree.getRootVal().isnumeric() and int(LTree.getRootVal())>=int(RTree.getRootVal()):
@@ -87,7 +83,6 @@ def simplifyTree(parseTree):
                     tempTree.leftChild = simplifyTree(LTree)
                     tempTree.rightChild = simplifyTree(RTree)
                     return tempTree
-                    #return [expression[0],simplifyTree(expression[1]), simplifyTree(expression[2])]
 
             elif current == '^':
                 if RTree.getRootVal() == '1':
@@ -103,21 +98,16 @@ def simplifyTree(parseTree):
                     tempTree.leftChild = simplifyTree(LTree)
                     tempTree.rightChild = simplifyTree(RTree)
                     return tempTree
-                    #return [expression[0],simplifyTree(expression[1]), simplifyTree(expression[2])]
-            
-            # elif is_function(current):
-            #     tempTree = BinaryTree(current)
-            #     tempTree.leftChild = simplifyTree(LTree)
-            #     return tempTree
 
             else:
                 tempTree = BinaryTree(current)
                 tempTree.leftChild = simplifyTree(LTree)
                 tempTree.rightChild = simplifyTree(RTree)
                 return tempTree
-                #return [expression[0],simplifyTree(expression[1]), simplifyTree(expression[2])]
 
-
+##################################################################################################
+# Funciones Auxiliares
+##################################################################################################
 def is_operand(car):
     operand_list = ['1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     if car in operand_list:
