@@ -38,7 +38,7 @@ def diffTree(parseTree, var):
         tempTree1.rightChild.rightChild = diffTree(G,var)
 
         tempTree2 = BinaryTree('^')
-        tempTree2.leftChild = F
+        tempTree2.leftChild = G
         tempTree2.insertRight('2')
 
         tempTree = BinaryTree('/')
