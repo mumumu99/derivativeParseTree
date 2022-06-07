@@ -38,6 +38,17 @@ def simplifyTree(parseTree):
                     tempTree.rightChild = simplifyTree(RTree)
                     return tempTree
                     #return [expression[0],simplifyTree(expression[1]), simplifyTree(expression[2])]
+            
+            if current == '/':
+                if RTree.getRootVal() == '1':
+                    return simplifyTree(LTree)
+                elif LTree.getRootVal() == '0':
+                    return BinaryTree('0')
+                else:
+                    tempTree = BinaryTree(current)
+                    tempTree.leftChild = simplifyTree(LTree)
+                    tempTree.rightChild = simplifyTree(RTree)
+                    return tempTree
 
             elif current == '+':
                 if isinstance(LTree.getRootVal(), str) and isinstance(RTree.getRootVal(), str) and LTree.getRootVal().isnumeric() and RTree.getRootVal().isnumeric():
